@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Registration | Smart Attendance System</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f7ff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ✨ Beautiful curved background shapes */
+    .top-shape {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 260px;
+      background: linear-gradient(135deg, #6a11cb, #8e2de2);
+      clip-path: path("M0,0 C40,120 260,200 600,150 C900,100 1100,50 1400,120 C1600,170 1800,80 1920,0 L1920,0 L0,0 Z");
+      z-index: 1;
+    }
+
+    .bottom-shape {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, #6a11cb, #8e2de2);
+      clip-path: path("M0,200 C400,100 800,300 1200,250 C1500,220 1700,280 1920,180 L1920,1080 L0,1080 Z");
+      z-index: 1;
+    }
+
+    .register-box {
+      position: relative;
+      z-index: 2;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 35px 30px;
+      width: 340px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .title {
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #6a11cb;
+    }
+
+    .input-group {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      font-size: 0.9em;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 0.95em;
+      background-color: #fafafa;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #6a11cb;
+      box-shadow: 0 0 6px rgba(106, 17, 203, 0.3);
+    }
+
+    /* 💜 Purple button */
+    button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      background-color: #7b2ff7;
+      color: white;
+      transition: background-color 0.2s ease, transform 0.08s ease;
+      box-shadow: 0 0 10px rgba(123, 47, 247, 0.4);
+    }
+
+    button:hover {
+      background-color: #6a1bb9;
+    }
+
+    button:active {
+      transform: scale(.98);
+    }
+
+    .login-link {
+      display: block;
+      margin-top: 12px;
+      color: #6a11cb;
+      text-decoration: none;
+      font-size: 0.85em;
+      font-weight: 500;
+    }
+
+    .login-link:hover {
+      text-decoration: underline;
+    }
+
+    .success, .error {
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    .success {
+      background: #e6ffed;
+      color: #2e7d32;
+    }
+
+    .error {
+      background: #ffe5e5;
+      color: #b30000;
+    }
+
+    /* ===== Mobile Adjustments ===== */
+@media (max-width: 768px) {
+  .register-box {
+    width: 90%;
+    padding: 25px 20px;
+  }
+
+  .title {
+    font-size: 1.2em;
+  }
+
+  .input-group input {
+    padding: 10px;
+    font-size: 0.95em;
+  }
+
+  button {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  .login-link {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-box {
+    width: 95%;
+    padding: 20px 15px;
+  }
+
+  .title {
+    font-size: 1.1em;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+
+  <script>
+    window.onload = () => {
+      const msg = document.querySelector(".success");
+      if (msg) document.querySelector("form").reset();
+    };
+  </script>
+</head>
+
+<body>
+  <div class="top-shape"></div>
+  <div class="bottom-shape"></div>
+
+  <div class="register-box">
+    <div class="title">👩‍🏫 Teacher Registration</div>
+
+    {% if error %}
+      <div class="{% if '✅' in error %}success{% else %}error{% endif %}">{{ error|safe }}</div>
+    {% endif %}
+
+    <form method="POST" action="/register_teacher">
+      <div class="input-group">
+        <label>Teacher ID</label>
+        <input type="text" name="teacher_id" placeholder="Enter Teacher ID (e.g., T101)" required>
+      </div>
+
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Enter Full Name" required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter Password" required>
+      </div>
+
+      <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+      </div>
+
+      <button type="submit">Register</button>
+      <a href="/" class="login-link">Already registered? Login here</a>
+    </form>
+  </div>
+</body>
+</html>

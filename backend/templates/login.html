@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login | Smart Attendance System</title>
+<style>
+  body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  min-height: 100vh; /* safe height */
+  display: flex;
+  align-items: flex-start; /* push content slightly down */
+  justify-content: center;
+  padding-top: 40px; /* spacing for top gradient */
+  background: #f5f7ff;
+  overflow-y: auto; /* allow scrolling */
+  position: relative;
+}
+
+
+  .top-design {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 35%; /* percentage instead of fixed px */
+  max-height: 300px; /* prevent being too tall on big screens */
+  background: linear-gradient(135deg, #6a11cb, #8e2de2);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  z-index: 1;
+}
+
+
+  .top-circle {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 25%;
+  max-width: 180px;
+  aspect-ratio: 1 / 1; /* always perfect circle */
+  background: radial-gradient(circle, #cfa8ff, #8e2de2);
+  border-radius: 50%;
+  filter: blur(35px);
+  opacity: 0.8;
+  z-index: 1;
+}
+
+
+  .login-box {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 35px 30px;
+  width: 330px;
+  max-width: 90%; /* responsive */
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+  .login-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+  }
+
+  .login-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .college-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #6a11cb;
+  }
+
+  .welcome-text {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #222;
+  }
+
+  .input-group {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .input-group label {
+    font-size: 0.9em;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 0.95em;
+    background-color: #fafafa;
+    color: #333;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* ensure same width calculation */
+}
+
+  .input-group input:focus,
+  .input-group select:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 6px rgba(106, 17, 203, 0.3);
+  }
+
+  button {
+    background: linear-gradient(135deg, #6a11cb, #8e2de2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95em;
+    width: 100%;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.4);
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(142, 45, 226, 0.5);
+  }
+
+  .forgot-link,
+  .register-link {
+    display: block;
+    margin-top: 10px;
+    color: #6a11cb;
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 500;
+  }
+
+  .forgot-link:hover,
+  .register-link:hover {
+    text-decoration: underline;
+  }
+
+  .footer-thought {
+    margin-top: 15px;
+    font-size: 0.8em;
+    color: #666;
+    font-style: italic;
+  }
+
+  .password-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+ .password-wrapper input {
+    width: 100%; /* make it exactly same as reg_number */
+    padding-right: 38px;
+    box-sizing: border-box;
+}
+
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.1rem;
+    color: #aaa;
+    transition: all 0.3s ease;
+    line-height: 1;
+  }
+
+  .toggle-password.active {
+    color: #6a11cb;
+    text-shadow: 0 0 6px rgba(106, 17, 203, 0.6);
+  }
+
+
+  /* ===== Mobile-Friendly Updates ===== */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .login-box {
+    width: 90% !important;
+    padding: 25px 20px !important;
+  }
+
+  .login-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .college-name {
+    font-size: 1em;
+  }
+
+  .welcome-text {
+    font-size: 1.2em;
+  }
+
+  .input-group input,
+  .input-group select,
+  button {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
+  .toggle-password {
+    font-size: 1rem;
+  }
+
+  .footer-thought {
+    font-size: 0.7em;
+  }
+
+ .top-design {
+  height: 25%;
+}
+
+.top-circle {
+  width: 35%;
+  max-width: 120px;
+  top: 5%;
+  right: 5%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+  <div class="top-design"></div>
+  <div class="top-circle"></div>
+
+  <div class="login-box">
+    <div class="login-icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Login Icon">
+    </div>
+
+    <div class="college-name">Government First Grade College</div>
+    <div class="welcome-text">Welcome to Smart Attendance 👋</div>
+
+    <form method="POST" action="/login" id="loginForm">
+      <div class="input-group">
+        <label for="reg_number">Register Number</label>
+        <input 
+          type="text" 
+          id="reg_number" 
+          name="reg_number" 
+          placeholder="Enter your Register Number" 
+          required
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter your Password" 
+            required
+            autocomplete="new-password"
+          >
+          <span class="toggle-password" id="togglePassword">👁️</span>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="role">Select Role</label>
+        <select id="role" name="role" required>
+          <option value="">-- Choose Role --</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </div>
+
+      <button type="submit">Login</button>
+      <a href="/forgot-password" class="forgot-link">Forgot Password?</a>
+      <a href="/student_register" class="register-link">🎓 New Student? Register here</a>
+      <a href="/teacher_register" class="register-link">👩‍🏫 New Teacher? Register here</a>
+    </form>
+
+    <div class="footer-thought">
+      “Learn. Scan. Grow. Every login opens a door to knowledge 💻📚”
+    </div>
+  </div>
+
+<script>
+  // Toggle password visibility
+  function togglePassword() {
+    const passInput = document.getElementById("password");
+    const toggleIcon = document.getElementById("togglePassword");
+    if (passInput.type === "password") {
+      passInput.type = "text";
+      toggleIcon.classList.add("active");
+    } else {
+      passInput.type = "password";
+      toggleIcon.classList.remove("active");
+    }
+  }
+  document.getElementById("togglePassword").addEventListener("click", togglePassword);
+
+  // Prevent browser autofill on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const username = document.getElementById('reg_number');
+    const password = document.getElementById('password');
+
+    // Clear any browser auto-filled values
+    username.value = '';
+    password.value = '';
+
+    // Enable browser suggestions when user focuses
+    username.addEventListener('focus', () => {
+      username.removeAttribute('autocomplete'); // allows dropdown suggestions
+    });
+  });
+</script>
+</body>
+</html>

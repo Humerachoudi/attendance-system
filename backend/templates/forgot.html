@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forgot Password | Smart Attendance System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #7b2ff7, #f107a3);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .curve {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: white;
+      border-bottom-left-radius: 60% 40%;
+      border-bottom-right-radius: 60% 40%;
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+      max-width: 900px;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .info-box {
+      background: #7b2ff7;
+      color: white;
+      padding: 40px 30px;
+      width: 35%;
+      text-align: center;
+    }
+
+    .info-box h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .info-box p {
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    .form-box {
+      flex: 1;
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    .form-box h1 {
+      margin-bottom: 20px;
+      color: #7b2ff7;
+      font-size: 1.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #7b2ff7;
+      box-shadow: 0 0 8px rgba(123,47,247,0.3);
+    }
+
+    button {
+      background: #7b2ff7;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #5f18d0;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #7b2ff7;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .info-box {
+        width: 100%;
+        padding: 25px;
+      }
+      .form-box {
+        padding: 25px;
+      }
+    }
+
+    /* ✅ Toast Notification */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      min-width: 250px;
+      padding: 15px 20px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.4s ease;
+      z-index: 9999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast.success {
+      background: #7b2ff7;
+    }
+
+    .toast.error {
+      background: #ff3b3b;
+    }
+
+    /* ===== Mobile-Friendly Styles ===== */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .container {
+    flex-direction: column !important;
+    width: 95% !important;
+    padding: 10px;
+  }
+
+  .info-box {
+    width: 100% !important;
+    padding: 20px !important;
+    text-align: center;
+  }
+
+  .info-box h2 {
+    font-size: 1.4rem;
+  }
+
+  .info-box p {
+    font-size: 0.8rem;
+  }
+
+  .form-box {
+    width: 100%;
+    padding: 20px !important;
+  }
+
+  .form-box h1 {
+    font-size: 1.5rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .back-link {
+    font-size: 0.8rem;
+  }
+
+  .curve {
+    height: 120px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="curve"></div>
+
+  <div class="container">
+    <div class="info-box">
+      <h2>Reset Password</h2>
+      <p>Enter your registration number and set a new password.</p>
+    </div>
+
+    <div class="form-box">
+      <h1>Forgot Password</h1>
+      <form id="resetForm">
+        <input type="text" id="reg_number" placeholder="Registration Number" required>
+        <input type="password" id="new_password" placeholder="New Password" required>
+        <button type="submit">Change Password</button>
+      </form>
+      <a href="/" class="back-link">← Back to Login</a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    function showToast(message, type = "success") {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.className = `toast show ${type}`;
+      setTimeout(() => {
+        toast.className = "toast";
+      }, 3000);
+    }
+
+    document.getElementById("resetForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const reg_number = document.getElementById("reg_number").value;
+      const new_password = document.getElementById("new_password").value;
+
+      const response = await fetch("/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reg_number, new_password })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        showToast("✅ Password reset successful!", "success");
+        setTimeout(() => window.location.href = "/", 2000);
+      } else {
+        showToast("⚠️ " + (data.detail || "User not found."), "error");
+      }
+    });
+  </script>
+</body>
+</html>

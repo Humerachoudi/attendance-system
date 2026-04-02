@@ -1,0 +1,12 @@
+name: flutter_app
+description: QR Attendance App
+version: 1.0.0+1
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  qr_code_scanner: ^1.0.1
+  flutter_secure_storage: ^8.0.0
