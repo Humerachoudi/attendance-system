@@ -1,8 +1,6 @@
-fastapi==0.111.1
-uvicorn==0.38.0
-openai==1.30.0
-pydub==0.25.1
-python-multipart==0.0.7
-gTTS==2.3.0
-pydantic==2.6.2
-qrcode[pil]==7.4.2
+fastapi==0.95.2
+uvicorn==0.22.0
+jinja2
+passlib[bcrypt]
+qrcode[pil]
+python-multipart
