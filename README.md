@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # QR Attendance System
 
 This is a simple **QR-based Attendance System** with a **FastAPI backend** and a **Flutter mobile app**.  
@@ -9,3 +10,7 @@ This is a simple **QR-based Attendance System** with a **FastAPI backend** and a
 
 ## Folder Structure
 
+=======
+# attendance-system
+USE FOR ATTENDANCE PURPOSE 
+>>>>>>> 1a170a6dc6c19865b46df7373c59db7eda633f1a
